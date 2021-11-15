@@ -5,6 +5,7 @@ import {
   CART_ITEM_PRICE,
   CART_ITEM_PRICE_ADD,
   CART_ITEM_PRICE_REMOVE,
+  SEND_TO_CART,
 } from './constants';
 
 export const cartItemAction = totalUnit => {
@@ -46,5 +47,12 @@ export const removeCartPriceAction = removePrice => {
   return {
     type: CART_ITEM_PRICE_REMOVE,
     removePrice,
+  };
+};
+
+export const sendToCartAction = product => {
+  return {
+    type: SEND_TO_CART,
+    product,
   };
 };

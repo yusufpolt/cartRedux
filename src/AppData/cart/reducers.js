@@ -1,45 +1,28 @@
-import {iteratorSymbol} from 'immer/dist/internal';
-import {CART_DATA} from '../../data/cartData';
 import {
-  initialValue,
-  CART_ITEM_UNIT,
-  CART_ITEM_UNIT_INCREASE,
-  CART_ITEM_UNIT_DECREASE,
   CART_ITEM_PRICE,
   CART_ITEM_PRICE_ADD,
   CART_ITEM_PRICE_REMOVE,
+  CART_ITEM_UNIT,
+  CART_ITEM_UNIT_DECREASE,
+  CART_ITEM_UNIT_INCREASE,
+  initialValue,
+  SEND_TO_CART,
 } from './constants';
 
 export function cartReducer(state = initialValue, action) {
   switch (action.type) {
-    case CART_ITEM_UNIT: {
-      state.totalUnit = action.totalUnit;
-      return {...state};
-    }
-    case CART_ITEM_UNIT_INCREASE: {
-      state.totalUnit = action.increase + 1;
-      return {...state};
-    }
-    case CART_ITEM_UNIT_DECREASE: {
-      if (state.totalUnit !== 0) {
-        state.totalUnit = action.decrease - 1;
-      }
-      return {...state};
-    }
-    case CART_ITEM_PRICE: {
-      state.totalPrice = action.totalPrice;
-      return {...state};
-    }
-    case CART_ITEM_PRICE_ADD: {
-      state.totalPrice = action.addPrice + 5
+    case SEND_TO_CART: {
+      const productIndex = state.products.findIndex(
+        p => p.id === action.product.id,
+      );
 
-      return {...state};
-    }
-    case CART_ITEM_PRICE_REMOVE: {
-      if (state.totalUnit != 0) {
-        state.totalPrice = action.removePrice - 5;
+      if (productIndex === -1) {
+        state.products.push(action.product);
+      } else {
+        state.products[productIndex].quantity += 1;
       }
-      return {...state};
+
+      return state;
     }
 
     default:

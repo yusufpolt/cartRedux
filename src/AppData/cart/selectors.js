@@ -1,11 +1,23 @@
 import {createSelector} from 'reselect';
 
-export const cartSelector = createSelector(
-  state => state.cart.totalUnit,
-  totalUnit => totalUnit,
+export const productsSelector = createSelector(
+  state => state.cart.products,
+  products => products,
 );
 
-export const totalCartPriceSelector = createSelector(
-  state => state.cart.totalPrice,
-  totalPrice => totalPrice,
+export const totalProductsSelector = createSelector(
+  state => state.cart.products,
+  products => products.length,
+);
+
+export const totalPriceSelector = createSelector(
+  state => state.cart.products,
+  products => {
+    let total = 0;
+    products.forEach(product => {
+      total += product.price * product.quantity;
+    });
+
+    return total;
+  },
 );

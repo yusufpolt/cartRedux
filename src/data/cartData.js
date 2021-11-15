@@ -16,6 +16,7 @@ export const CART_DATA = [
     price: 9.99,
     priceType: '$',
     image: CHOCOLATE_ICON,
+    quantity: 0,
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ export const CART_DATA = [
     price: 2.99,
     priceType: '$',
     image: MILK_ICON,
+    quantity: 0,
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ export const CART_DATA = [
     price: 0.99,
     priceType: '$',
     image: WATER_ICON,
+    quantity: 0,
   },
   {
     id: 4,
@@ -37,5 +40,6 @@ export const CART_DATA = [
     price: 4.99,
     priceType: '$',
     image: COLA_ICON,
+    quantity: 0,
   },
 ];

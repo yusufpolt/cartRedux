@@ -6,7 +6,8 @@ export const CART_ITEM_PRICE = 'CART_ITEM_PRICE';
 export const CART_ITEM_PRICE_ADD = 'CART_ITEM_PRICE_ADD';
 export const CART_ITEM_PRICE_REMOVE = 'CART_ITEM_PRICE_REMOVE';
 
+export const SEND_TO_CART = '@PUSH_TO_CART';
+
 export const initialValue = {
-  totalUnit: 0,
-  totalPrice: 0,
+  products: [],
 };

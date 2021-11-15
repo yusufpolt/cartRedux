@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
 import {
+  FlatList,
   Image,
+  SafeAreaView,
   StyleSheet,
   Text,
-  View,
-  FlatList,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+  addCartPriceAction,
   decreaseCartAction,
   increaseCartAction,
-  addCartPriceAction,
   removeCartPriceAction,
 } from '../AppData/cart/actions';
-import {cartSelector, totalCartPriceSelector} from '../AppData/cart/selectors';
+import {totalProductsSelector} from '../AppData/cart/selectors';
 import {CART_DATA} from '../data/cartData';
 
 const FAVORITE_ICONS =
@@ -28,32 +29,8 @@ const ADD_ICON = 'https://img.icons8.com/doodle/48/000000/add.png';
 
 const Home = ({navigation}) => {
   const [data, setData] = useState(CART_DATA);
-
-  const cartItemUnit = useSelector(cartSelector);
-
-  const cartItemPrice = useSelector(totalCartPriceSelector);
-
+  const totalProducts = useSelector(totalProductsSelector);
   const dispatch = useDispatch();
-
-  const showStateUnit = () => {
-    return cartItemUnit;
-  };
-
-  const showStatePrice = () => {
-    return cartItemPrice;
-  };
-
-  const increaseCartUnit = () => (
-    dispatch(increaseCartAction(cartItemUnit)),
-    dispatch(addCartPriceAction(cartItemPrice))
-  );
-
-  const decreaseCartUnit = () => {
-    return (
-      dispatch(decreaseCartAction(cartItemUnit)),
-      dispatch(removeCartPriceAction(cartItemPrice))
-    );
-  };
 
   const CartItem = ({item}) => (
     <View style={styles.itemsContainer}>
@@ -74,17 +51,13 @@ const Home = ({navigation}) => {
 
       <View style={styles.buttonsContainer}>
         <View style={styles.increaseButtonContainer}>
-          <TouchableOpacity
-            onPress={() => increaseCartUnit()}
-            style={styles.increaseButton}>
+          <TouchableOpacity onPress={() => null} style={styles.increaseButton}>
             <Image source={{uri: ADD_ICON}} style={styles.buttonIcon} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.decreaseButtonContainer}>
-          <TouchableOpacity
-            onPress={() => decreaseCartUnit()}
-            style={styles.decreaseButton}>
+          <TouchableOpacity onPress={() => null} style={styles.decreaseButton}>
             <Image source={{uri: REMOVE_ICON}} style={styles.buttonIcon} />
           </TouchableOpacity>
         </View>
@@ -103,7 +76,7 @@ const Home = ({navigation}) => {
   const cartRenderItem = ({item}) => <CartItem item={item} />;
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.favoriteContainer}>
           <TouchableOpacity onPress={() => navigation.push('FavoriteScreen')}>
@@ -121,14 +94,12 @@ const Home = ({navigation}) => {
         <View style={styles.cartContainer}>
           <Image style={styles.iconImage} source={{uri: CART_ICONS}} />
           <View style={[styles.cartItem, styles.itemUnitCounter]}>
-            <Text style={styles.cartItemUnit}>
-              {showStateUnit(cartItemUnit)}
-            </Text>
+            <Text style={styles.cartItemUnit}>{totalProductsSelector}</Text>
           </View>
         </View>
       </View>
 
-      <View style={styles.headerDivider}></View>
+      <View style={styles.headerDivider} />
 
       <View style={styles.cartContainer}>
         <FlatList
@@ -150,13 +121,13 @@ const Home = ({navigation}) => {
 
           <View style={styles.bottomContent}>
             <Text style={styles.totalPriceText}>
-              {showStatePrice(cartItemPrice)}
+              {/* {showStatePrice(cartItemPrice)} */}
             </Text>
             <Text style={styles.totalPriceText}>{data[0].priceType}</Text>
           </View>
         </LinearGradient>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
