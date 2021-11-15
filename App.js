@@ -1,14 +1,14 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import { Provider } from 'react-redux'
-import store from './src/AppData/store'
-import Home from './src/screens/Home'
+import React from 'react';
+import {Provider} from 'react-redux';
+import store from './src/AppData/store';
+import Home from './src/screens/Home';
+
 const App = () => {
   return (
     <Provider store={store}>
-      <Home/>
+      <Home />
     </Provider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
