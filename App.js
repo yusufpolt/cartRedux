@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {Provider} from 'react-redux';
 import store from './src/AppData/store';
-import FavoriteScreen from './src/screens/FavoriteScreen';
+import {Basket} from './src/screens/basket';
 import Home from './src/screens/Home';
 const Stack = createStackNavigator();
 
@@ -17,7 +17,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={screenOptions}>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
+          <Stack.Screen name="Basket" component={Basket} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

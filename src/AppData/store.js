@@ -1,4 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {countReducer} from './count/reducer';
 import {cartReducer} from './cart/reducers';
 
 const middlewares = [
@@ -11,6 +12,7 @@ if (__DEV__) {
 }
 
 const reducers = combineReducers({
+  count: countReducer,
   cart: cartReducer,
 });
 
